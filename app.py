@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request
 import twilio.twiml
-from twilio.rest import TwilioRestClient
+from charity import Charity
 
 
 app = Flask(__name__)
@@ -9,16 +9,21 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
 def hello():
-    from_number = request.args.get('From')
     text_content = request.args.get('Body').lower()
-
-    client = TwilioRestClient(os.environ['TWILIO_ACCOUNT_SID'],
-                              os.environ['TWILIO_AUTH_TOKEN'])
-    client.sms.messages.create(to="+17187535039",
-                                from_=from_number,
-                                body="fresh message!")
-
-    message = from_number + ", thanks for the donation!"
+    if text_content == '5':
+        charity = Charity(5)
+        amount = '$5'
+    elif text_content == '5':
+        charity = Charity(10)
+        amount = '$10'
+    else:
+        resp = twilio.twiml.Response()
+        resp.sms("Please enter 5 or 10 to specify the amount you wish donate.")
+        return str(resp)
+    message = "Text %s to %s to donate %s to %s" % (charity.code,
+                                                    charity.to_number,
+                                                    amount,
+                                                    charity.name)
     resp = twilio.twiml.Response()
     resp.sms(message)
     return str(resp)
