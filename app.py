@@ -18,7 +18,7 @@ def hello():
     else:
         donee = None
 
-    message = "Please enter 5 or 10 to specify the amount you wish donate."
+    message = "Please enter 5 or 10 to specify the amount you wish to donate."
     if donee is not None:
         message = "Text %s to %s to donate %s to %s" % (donee.code,
                                                         donee.to_number,
