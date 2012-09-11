@@ -1,11 +1,18 @@
 import os
-from flask import Flask
+from flask import Flask, request, redirect
+import twilio.twiml
 
 app = Flask(__name__)
 
-@app.route('/')
+
+@app.route("/", methods=['GET', 'POST'])
 def hello():
-    return 'Hello World!'
+    """Respond to incoming calls with a simple text message."""
+
+    resp = twilio.twiml.Response()
+    resp.sms("Hello, Mobile Monkey")
+    return str(resp)
+
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
