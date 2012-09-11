@@ -16,13 +16,13 @@ def hello():
     elif '10' in text_content:
         donee = Charity(10)
 
-    if donee is None:
-        message = "Please enter 5 or 10 to specify the amount you wish donate."
-    else:
+    if donee:
         message = "Text %s to %s to donate %s to %s" % (donee.code,
                                                         donee.to_number,
                                                         donee.amount,
                                                         donee.name)
+    else:
+        message = "Please enter 5 or 10 to specify the amount you wish donate."
 
     resp = twilio.twiml.Response()
     resp.sms(message)
