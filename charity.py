@@ -24,7 +24,13 @@ class Charity:
      {'to_number': '20222', 'code': 'VICTORY',
          'name': 'American Cancer Society, Inc.'},
      {'to_number': '25383', 'code': 'ADA',
-         'name': 'American Diabetes Association'}]
+         'name': 'American Diabetes Association'},
+     {'to_number': '20222', 'code': 'FIGHT',
+          'name': 'American Kidney Fund, Inc.'},
+     {'to_number': '20222', 'code': 'GIVEAKF',
+          'name': 'American Kidney Fund, Inc.'},
+     {'to_number': '20222', 'code': 'PREVENT',
+          'name': 'American Kidney Fund, Inc.'}]
 
     TEN_DOLLAR_CHARITIES = [
       {'to_number': '20222', 'code': 'ASASHI',
@@ -70,7 +76,17 @@ class Charity:
       {'to_number': '25383', 'code': 'WALK',
           'name': 'American Diabetes Association'},
       {'to_number': '25383', 'code': 'SUPPORT',
-          'name': 'American Diabetes Association'}]
+          'name': 'American Kidney Fund, Inc.'},
+      {'to_number': '20222', 'code': 'KIDNEY',
+          'name': 'American Kidney Fund, Inc.'},
+      {'to_number': '20222', 'code': 'AKF',
+          'name': 'American Kidney Fund, Inc.'},
+      {'to_number': '20222', 'code': 'ALAHAITI',
+          'name': 'American Library Association'},
+      {'to_number': '20222', 'code': 'ALAJAPAN',
+          'name': 'American Library Association'},
+      {'to_number': '41518', 'code': 'ALA',
+          'name': 'American Library Association'}]
 
     def __init__(self, amount):
         if amount == 5:
