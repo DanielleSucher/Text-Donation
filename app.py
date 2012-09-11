@@ -9,22 +9,20 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
 def hello():
-    text_content = request.args.get('Body')
+    text_content = request.form['Body']
 
     if '5' in text_content:
         charity = Charity(5)
-        amount = '$5'
     elif '10' in text_content:
         charity = Charity(10)
-        amount = '$10'
+    else:
+        message = "Please enter 5 or 10 to specify the amount you wish donate."
 
     if charity is not None:
         message = "Text %s to %s to donate %s to %s" % (charity.code,
                                                         charity.to_number,
-                                                        amount,
+                                                        charity.amount,
                                                         charity.name)
-    else:
-        message = "Please enter 5 or 10 to specify the amount you wish donate."
 
     resp = twilio.twiml.Response()
     resp.sms(message)

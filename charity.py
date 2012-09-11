@@ -75,8 +75,10 @@ class Charity:
     def __init__(self, amount):
         if amount == 5:
             charity = choice(Charity.FIVE_DOLLAR_CHARITIES)
+            self.amount = '$5'
         else:
             charity = choice(Charity.TEN_DOLLAR_CHARITIES)
+            self.amount = '$10'
         self.to_number = charity['to_number']
         self.code = charity['code']
         self.name = charity['name']
