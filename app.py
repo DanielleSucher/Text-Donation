@@ -1,23 +1,24 @@
 import os
-from flask import Flask, request, redirect, session
+from flask import Flask, request
 import twilio.twiml
 from twilio.rest import TwilioRestClient
-from charity import Charity
 
-SECRET_KEY = os.environ['DONATION_SECRET_KEY']
+
 app = Flask(__name__)
 
 
 @app.route("/", methods=['GET', 'POST'])
 def hello():
-    from_number = request.values.get('From', None)
-    client = TwilioRestClient()
-    charity = Charity()
+    from_number = request.args.get('From')
+    text_content = request.args.get('Body').lower()
+
+    client = TwilioRestClient(os.environ['TWILIO_ACCOUNT_SID'],
+                              os.environ['TWILIO_AUTH_TOKEN'])
     client.sms.messages.create(to="+17187535039",
                                 from_=from_number,
                                 body="fresh message!")
 
-    message = from_number + ", thanks for the message!"
+    message = from_number + ", thanks for the donation!"
     resp = twilio.twiml.Response()
     resp.sms(message)
     return str(resp)
