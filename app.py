@@ -16,8 +16,9 @@ def hello():
     elif '10' in text_content:
         donee = Charity(10)
 
-    message = "Please enter 5 or 10 to specify the amount you wish donate."
-    if donee is not None:
+    if donee is None:
+        message = "Please enter 5 or 10 to specify the amount you wish donate."
+    else:
         message = "Text %s to %s to donate %s to %s" % (donee.code,
                                                         donee.to_number,
                                                         donee.amount,
